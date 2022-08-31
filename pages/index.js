@@ -10,15 +10,8 @@ import {
 } from "../utils/getWeather";
 import { getProductData } from "../utils/getDmData";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 
-export default function Home() {
-  // const city = "Karlsruhe,ger";
-  // const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${process.env.KEY}`;
-  // const fetcher = (url) => fetch(url).then((res) => res.json());
-  // const { data , error } = useSWR(url, fetcher);
-  // console.log("Test", data);
-  
+export default function Home() {  
   const [products, setProducts] = useState([]);
   const [currentDate, setCurrentDate] = useState();
   const [currentTemp, setCurrentTemp] = useState();
