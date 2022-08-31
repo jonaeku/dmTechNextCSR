@@ -6,11 +6,19 @@ import {
   getHighestUviValue,
   getWeatherData,
   unixDateConverter,
+  useGetPosts,
 } from "../utils/getWeather";
 import { getProductData } from "../utils/getDmData";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export default function Home() {
+  // const city = "Karlsruhe,ger";
+  // const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${process.env.KEY}`;
+  // const fetcher = (url) => fetch(url).then((res) => res.json());
+  // const { data , error } = useSWR(url, fetcher);
+  // console.log("Test", data);
+  
   const [products, setProducts] = useState([]);
   const [currentDate, setCurrentDate] = useState();
   const [currentTemp, setCurrentTemp] = useState();
@@ -21,13 +29,14 @@ export default function Home() {
 
       const coords = await getCityCoords(city);
       const weatherData = await getWeatherData(coords.lat, coords.lon);
+      console.log(weatherData)
 
       const highestUvi = await getHighestUviValue(weatherData);
       const productData = await getProductData(highestUvi);
 
-      setProducts(productData.products)
-      setCurrentDate(unixDateConverter(weatherData.current.dt))
-      setCurrentTemp(weatherData.current.temp)
+      setProducts(productData.products);
+      setCurrentDate(unixDateConverter(weatherData.current.dt));
+      setCurrentTemp(weatherData.current.temp);
     }
     loadData();
   }, []);
