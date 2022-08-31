@@ -6,11 +6,12 @@ import {
   getHighestUviValue,
   getWeatherData,
   unixDateConverter,
+  useGetPosts,
 } from "../utils/getWeather";
 import { getProductData } from "../utils/getDmData";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Home() {  
   const [products, setProducts] = useState([]);
   const [currentDate, setCurrentDate] = useState();
   const [currentTemp, setCurrentTemp] = useState();
@@ -21,13 +22,14 @@ export default function Home() {
 
       const coords = await getCityCoords(city);
       const weatherData = await getWeatherData(coords.lat, coords.lon);
+      console.log(weatherData)
 
       const highestUvi = await getHighestUviValue(weatherData);
       const productData = await getProductData(highestUvi);
 
-      setProducts(productData.products)
-      setCurrentDate(unixDateConverter(weatherData.current.dt))
-      setCurrentTemp(weatherData.current.temp)
+      setProducts(productData.products);
+      setCurrentDate(unixDateConverter(weatherData.current.dt));
+      setCurrentTemp(weatherData.current.temp);
     }
     loadData();
   }, []);
