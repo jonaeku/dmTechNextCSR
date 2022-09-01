@@ -1,6 +1,6 @@
 export const getProductData = async (highestUvi) => {
   const res = await fetch(
-    `https://product-search.services.dmtech.com/de/search/crawl?query=sonnencreme&searchType=product&sunProtectionFactorRange=${spfCalculator(
+    `https://product-search-rls.nonprod.services.dmtech.com/de/search/crawl?query=sonnencreme&searchType=product&sunProtectionFactorRange=${spfCalculator(
       highestUvi
     )}&type=search&brandName=SUNDANCE&brandName=babylove&pageSize=5`
   );
