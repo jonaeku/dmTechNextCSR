@@ -6,7 +6,6 @@ import {
   getHighestUviValue,
   getWeatherData,
   unixDateConverter,
-  useGetPosts,
 } from "../utils/getWeather";
 import { getProductData } from "../utils/getDmData";
 import { useEffect, useState } from "react";
